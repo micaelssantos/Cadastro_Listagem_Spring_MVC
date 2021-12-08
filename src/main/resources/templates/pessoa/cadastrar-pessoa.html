@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TADS Atividade Desenvolvimento Web 2021-2</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <main class="container">
+            <div class="row">
+                <section class="col-md-12">
+                    <h1>Formulário</h1>
+                    <form method="post" th:action="@{/pessoa/salvar}" th:object="${pessoa}" novalidate>
+                        <div class="form-group row">
+                            <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome"
+                                       th:field="*{nome}" required maxlength="100" 
+                                       th:classappend="${#fields.hasErrors('nome')}? is-invalid" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">ERRO</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                            <div class="col-sm-10">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="E-mail"
+                                       th:field="*{email}" required maxlength="100"
+                                       th:classappend="${#fields.hasErrors('email')}? is-invalid" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">ERRO</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="datanascimento" class="col-sm-2 col-form-label">Data de nascimento</label>
+                            <div class="col-sm-3">
+                                <input type="date" name="dataNascimento" class="form-control" id="datanascimento"
+                                       th:field="*{dataNascimento}" required
+                                       th:classappend="${#fields.hasErrors('dataNascimento')}? is-invalid" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}">ERRO</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 offset-md-3">
+                                <button type="submit" class="btn btn-block btn-success">Enviar</button>
+                            </div>
+                            <div class="col-md-3">
+                                <a th:href="@{/pessoa}" role="button" class="btn btn-block btn-outline-dark">Voltar</a>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>
